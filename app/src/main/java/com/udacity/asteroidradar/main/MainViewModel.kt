@@ -31,10 +31,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val pictureOfDay: LiveData<PictureOfDay>
         get() = _pictureOfDay
 
-//    private val _displaySnackbarEvent = MutableLiveData<Boolean>()
-//    val displaySnackbarEvent: LiveData<Boolean>
-//        get() = _displaySnackbarEvent
-
     init {
         viewModelScope.launch {
             try {
@@ -43,7 +39,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 showAllWeekAsteroids()
             } catch (e: Exception) {
                 println("*Exception refreshAsteroids*_ ${e.message}")
-//                _displaySnackbarEvent.value = true
             }
         }
     }
@@ -59,10 +54,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     fun displayAsteroidDetailsComplete() {
         _navigateToDetailFragment.value = null
     }
-
-//    fun doneDisplayingSnackbar() {
-//        _displaySnackbarEvent.value = false
-//    }
 
     fun showAllWeekAsteroids() {
         viewModelScope.launch {

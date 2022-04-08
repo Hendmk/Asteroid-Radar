@@ -3,23 +3,23 @@ package com.udacity.asteroidradar
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
-import com.udacity.asteroidradar.main.AsteroidsAdapter
-import com.udacity.asteroidradar.model.Asteroid
 import com.udacity.asteroidradar.model.PictureOfDay
 
 @BindingAdapter("pictureOfTheDay")
 fun bindPictureOfDay(imageView: ImageView, pictureOfDay: PictureOfDay?) {
-        Picasso.with(imageView.context)
-            .load(pictureOfDay?.url)
-            .placeholder(R.drawable.placeholder_picture_of_day)
-            .error(R.drawable.placeholder_picture_of_day)
-            .fit()
-            .centerCrop()
-            .into(imageView)
-        val imageDescription = String.format(imageView.context.getString(R.string.nasa_picture_of_day_content_description_format), pictureOfDay?.title)
-        imageView.contentDescription = imageDescription
+    Picasso.with(imageView.context)
+        .load(pictureOfDay?.url)
+        .placeholder(R.drawable.placeholder_picture_of_day)
+        .error(R.drawable.placeholder_picture_of_day)
+        .fit()
+        .centerCrop()
+        .into(imageView)
+    val imageDescription = String.format(
+        imageView.context.getString(R.string.nasa_picture_of_day_content_description_format),
+        pictureOfDay?.title
+    )
+    imageView.contentDescription = imageDescription
 }
 
 @BindingAdapter("statusIcon")

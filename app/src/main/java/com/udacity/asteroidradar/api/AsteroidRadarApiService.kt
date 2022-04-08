@@ -15,8 +15,8 @@ import retrofit2.http.Query
 
 
 private val moshi = Moshi.Builder()
-        .add(KotlinJsonAdapterFactory())
-        .build()
+    .add(KotlinJsonAdapterFactory())
+    .build()
 
 private val retrofit = Retrofit.Builder()
     .baseUrl(BASE_URL)
@@ -28,13 +28,17 @@ private val retrofit = Retrofit.Builder()
 interface AsteroidRadarApiService {
 
     @GET("planetary/apod")
-    fun getPictureOfTheDay(@Query("api_key")apiKey:String = API_KEY): Deferred<PictureOfDay>
+    fun getPictureOfTheDay(@Query("api_key") apiKey: String = API_KEY): Deferred<PictureOfDay>
 
     @GET("neo/rest/v1/feed")
-    fun getAsteroids(@Query("start_date") startDate:String,
-                             @Query("end_date") endDate:String,
-                             @Query("api_key") apiKey: String = API_KEY): Deferred<ResponseBody>
+    fun getAsteroids(
+        @Query("start_date") startDate: String,
+        @Query("end_date") endDate: String,
+        @Query("api_key") apiKey: String = API_KEY
+    ): Deferred<ResponseBody>
 
 }
 
-object AsteroidRadarApi { val asteroidService = retrofit.create(AsteroidRadarApiService::class.java) }
+object AsteroidRadarApi {
+    val asteroidService = retrofit.create(AsteroidRadarApiService::class.java)
+}

@@ -23,14 +23,9 @@ class AsteroidRepository(private val database: AsteroidDatabase) {
                 Constants.API_KEY
             )
                 .await()
-            val asteroids: ArrayList<Asteroid> = parseAsteroidsJsonResult(JSONObject(response.string()))
+            val asteroids: ArrayList<Asteroid> =
+                parseAsteroidsJsonResult(JSONObject(response.string()))
             database.asteroidDao.insertAll(*asteroids.asDatabaseModel())
-        }
-    }
-
-    suspend fun deleteOldDayAsteroids() {
-        withContext(Dispatchers.IO) {
-            database.asteroidDao.deleteOldDayAsteroids(getTodayDate())
         }
     }
 
@@ -39,6 +34,6 @@ class AsteroidRepository(private val database: AsteroidDatabase) {
         withContext(Dispatchers.IO) {
             pictureOfDay = AsteroidRadarApi.asteroidService.getPictureOfTheDay().await()
         }
-            return pictureOfDay
+        return pictureOfDay
     }
 }
